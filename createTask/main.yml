@@ -1,0 +1,34 @@
+parameters:
+  - name: Boolean
+    type: boolean
+    default: false
+  - name: String
+    type: string
+    default: sample text
+
+trigger: none
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  ORG_NAME: '<your_org>'          # 例: myorg
+  PROJECT_NAME: '<your_project>'  # 例: MyProject
+
+steps:
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '3.x'
+    addToPath: true
+
+- script: |
+    pip install requests
+  displayName: 'Install Python dependencies'
+
+- script: |
+    python create_work_item.py
+  env:
+    ORG_NAME: $(ORG_NAME)
+    PROJECT_NAME: $(PROJECT_NAME)
+    AZURE_DEVOPS_PAT: $(AZURE_DEVOPS_PAT)
+  displayName: 'Run Python Script'
