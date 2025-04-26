@@ -20,6 +20,8 @@ steps:
 - script: |
     apt-get update
     apt-get install -y curl
+    pwd
+    ls
     ./add.sh
 #     pip install requests
 #   displayName: 'Install Python dependencies'
