@@ -1,3 +1,5 @@
+name: Test
+
 parameters:
   - name: Boolean
     type: boolean
@@ -22,7 +24,7 @@ steps:
     apt-get install -y curl
     pwd
     ls
-    ./add.sh
+    ./createTask/add.sh
 #     pip install requests
 #   displayName: 'Install Python dependencies'
 
