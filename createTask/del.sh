@@ -14,7 +14,7 @@ WIQL_URL="https://dev.azure.com/${ORG}/${PROJECT}/_apis/wit/wiql?api-version=${A
 
 RESPONSE=$(curl -s -X POST "$WIQL_URL" \
   -H "Content-Type: application/json" \
-  -H "Authorization: Basic $ENCODED_PAT" \
+  -H "Authorization: Basic OjljVGN1THFZMlppckx3ZUR2Y2xIdVlWYUg2eENvQnMyQ2RJeFlGTGltOXlDMFpPWjRRQ09KUVFKOTlCREFDQUFBQUFBQUFBQUFBQVNBWkRPNGFpUw==" \
   -d "$WIQL_QUERY")
 
 IDS=$(echo "$RESPONSE" | jq '.workItems[].id')
