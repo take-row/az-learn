@@ -79,3 +79,9 @@ curl -X POST \
 
 
 ```
+
+```
+curl -X GET \
+  -H "Authorization: Basic OjljVGN1THFZMlppckx3ZUR2Y2xIdVlWYUg2eENvQnMyQ2RJeFlGTGltOXlDMFpPWjRRQ09KUVFKOTlCREFDQUFBQUFBQUFBQUFBQVNBWkRPNGFpUw==" \
+  "https://dev.azure.com/takurou76/az-learn/_apis/wit/workitemtypes/Task?api-version=7.0"
+```

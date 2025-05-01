@@ -7,7 +7,7 @@ project = os.environ["PROJECT_NAME"]
 pat = os.environ["AZURE_DEVOPS_PAT"]
 
 def main():
-    for i in range(10000):
+    for i in range(4):
         count = 1 + i
         batch_number = "batch1"
         add_tags = [batch_number]
@@ -33,13 +33,12 @@ def main():
             
         # Done
         if not is_4 and is_3:
-            done_dict = {
+            doing_dict = {
                 "op": "add",
                 "path": "/fields/System.State",
-                "value": "Done"
+                "value": "Doing"
             }
-            payload.append(done_dict)
-
+            payload.append(doing_dict)
 
         exec_post_api(payload)
 
@@ -64,7 +63,7 @@ def exec_post_api(payload):
         print("Status Code:", response.status_code)
         print("Response:", response.json())
         count += 1
-        if count > 100:
+        if count > 10:
             raise Exception
 
 main()
