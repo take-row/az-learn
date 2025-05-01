@@ -37,7 +37,7 @@ def main():
             doing_dict = {
                 "op": "add",
                 "path": "/fields/System.State",
-                "value": "Doing"
+                "value": "To do"
             }
             payload.append(doing_dict)
 
