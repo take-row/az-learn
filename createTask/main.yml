@@ -1,12 +1,4 @@
-name: Test
-
-parameters:
-  - name: Boolean
-    type: boolean
-    default: false
-  - name: String
-    type: string
-    default: sample text
+name: Create Task
 
 trigger: none
 
@@ -14,25 +6,16 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-# - task: UsePythonVersion@0
-#   inputs:
-#     versionSpec: '3.x'
-#     addToPath: true
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '3.x'
+    addToPath: true
 
 - script: |
-    apt-get update
-    apt-get install -y curl
-    apt-get install -y jq
-    pwd
-    ls
-    ./createTask/del.sh
-#     pip install requests
-#   displayName: 'Install Python dependencies'
-
-# - script: |
-#     python create_work_item.py
-#   env:
-#     ORG_NAME: $(ORG_NAME)
-#     PROJECT_NAME: $(PROJECT_NAME)
-#     AZURE_DEVOPS_PAT: $(ACCESS_TOKEN)
-#   displayName: 'Run Python Script'
+    pip install -r ./createTask/requirements.txt
+    ./createTask/create_task.py
+  env:
+    ORG_NAME: takurou76
+    PROJECT_NAME: az-learn
+    AZURE_DEVOPS_PAT: OjljVGN1THFZMlppckx3ZUR2Y2xIdVlWYUg2eENvQnMyQ2RJeFlGTGltOXlDMFpPWjRRQ09KUVFKOTlCREFDQUFBQUFBQUFBQUFBQVNBWkRPNGFpUw==
+  displayName: 'execute'

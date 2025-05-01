@@ -3,8 +3,8 @@ from requests.auth import HTTPBasicAuth
 import json
 import os
 
-org = os.environ["ORG_NAME"]          # 例: "myorg"
-project = os.environ["PROJECT_NAME"]  # 例: "MyProject"
+org = os.environ["ORG_NAME"]
+project = os.environ["PROJECT_NAME"]
 pat = os.environ["AZURE_DEVOPS_PAT"]
 
 url = f"https://dev.azure.com/{org}/{project}/_apis/wit/workitems/$Task?api-version=7.0"
