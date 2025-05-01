@@ -3,9 +3,9 @@
 # === 設定値（必要に応じて書き換えてください） ===
 ORG="takurou76"        # Azure DevOps Organization
 PROJECT="az-learn"         # プロジェクト名
-PAT="OjljVGN1THFZMlppckx3ZUR2Y2xIdVlWYUg2eENvQnMyQ2RJeFlGTGltOXlDMFpPWjRRQ09KUVFKOTlCREFDQUFBQUFBQUFBQUFBQVNBWkRPNGFpUw=="  # パーソナルアクセストークン（安全な保管推奨）
+ENCODED_PAT="OjljVGN1THFZMlppckx3ZUR2Y2xIdVlWYUg2eENvQnMyQ2RJeFlGTGltOXlDMFpPWjRRQ09KUVFKOTlCREFDQUFBQUFBQUFBQUFBQVNBWkRPNGFpUw=="  # パーソナルアクセストークン（安全な保管推奨）
 API_VERSION="7.1-preview.3"
-ENCODED_PAT=$(echo -n ":$PAT" | base64)
+
 
 # === 1. 全 Work Item ID を取得 ===
 echo "🔍 すべての Work Item ID を取得中..."
