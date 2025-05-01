@@ -13,7 +13,7 @@ steps:
 
 - script: |
     pip install -r ./createTask/requirements.txt
-    ./createTask/create_task.py
+    python ./createTask/create_task.py
   env:
     ORG_NAME: takurou76
     PROJECT_NAME: az-learn
