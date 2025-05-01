@@ -23,25 +23,32 @@ def main():
             {
                 "op": "add",
                 "path": "/fields/System.Title",
-                "value": f"task-{count}"
+                "value": f"task-{count}",
             },
             {
                 "op": "replace",
                 "path": "/fields/System.Tags",
-                "value": "; ".join(add_tags)
+                "value": "; ".join(add_tags),
             },
         ]
+        
+        response = exec_post_api(payload)
             
         # Done
         if not is_4 and is_3:
-            doing_dict = {
-                "op": "add",
-                "path": "/fields/System.State",
-                "value": "To do"
-            }
-            payload.append(doing_dict)
+            work_item_id = response.json()['id']
+    
+            payload = [
+                {
+                    "op": "add",
+                    "path": "/fields/System.State",
+                    "value": "Done",
+                }
+            ]
 
-        exec_post_api(payload)
+            exec_patch_api(work_item_id, payload)
+
+
 
 def exec_post_api(payload):
     url = f"https://dev.azure.com/{org}/{project}/_apis/wit/workitems/$Task?api-version=7.0"
@@ -66,5 +73,34 @@ def exec_post_api(payload):
         count += 1
         if count > 10:
             raise Exception
+    
+    return response
+    
+def exec_patch_api(id, payload):
+
+    url = f"https://dev.azure.com/{org}/{project}/_apis/wit/workitems/{id}?api-version=7.0"
+    headers = {
+        "Content-Type": "application/json-patch+json",
+        "Authorization": f"Basic {pat}",
+    }
+
+    count = 0
+    while True:
+        response = requests.patch(
+            url,
+            headers=headers,
+            data=json.dumps(payload)
+        )
+
+        if response.status_code == 200:
+            break
+
+        print("Status Code:", response.status_code)
+        print("Response:", response.json())
+        count += 1
+        if count > 10:
+            raise Exception
+    
+    return response
 
 main()
