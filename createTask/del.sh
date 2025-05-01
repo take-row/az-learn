@@ -4,15 +4,15 @@
 ORG="takurou76"        # Azure DevOps Organization
 PROJECT="az-learn"         # プロジェクト名
 ENCODED_PAT="OjljVGN1THFZMlppckx3ZUR2Y2xIdVlWYUg2eENvQnMyQ2RJeFlGTGltOXlDMFpPWjRRQ09KUVFKOTlCREFDQUFBQUFBQUFBQUFBQVNBWkRPNGFpUw=="  # パーソナルアクセストークン（安全な保管推奨）
-API_VERSION="7.1-preview.3"
+API_VERSION="7.0"
 
 
 # === 1. 全 Work Item ID を取得 ===
 echo "🔍 すべての Work Item ID を取得中..."
 WIQL_QUERY='{"query": "SELECT [System.Id] FROM WorkItems"}'
-WIQL_URL="https://dev.azure.com/${ORG}/${PROJECT}/_apis/wit/wiql?api-version=${API_VERSION}"
+WIQL_URL="https://dev.azure.com/takurou76/az-learn/_apis/wit/wiql?api-version=7.0"
 
-RESPONSE=$(curl -s -X POST "$WIQL_URL" \
+RESPONSE=$(curl -s -X POST "https://dev.azure.com/takurou76/az-learn/_apis/wit/wiql?api-version=7.0" \
   -H "Content-Type: application/json" \
   -H "Authorization: Basic OjljVGN1THFZMlppckx3ZUR2Y2xIdVlWYUg2eENvQnMyQ2RJeFlGTGltOXlDMFpPWjRRQ09KUVFKOTlCREFDQUFBQUFBQUFBQUFBQVNBWkRPNGFpUw==" \
   -d "$WIQL_QUERY")
