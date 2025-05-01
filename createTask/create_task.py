@@ -13,6 +13,7 @@ def main():
         add_tags = [batch_number]
         is_3 = True if (count % 3 == 0) else False
         is_4 = True if (count % 4 == 0) else False
+        print(f"count={count}, is_3={is_3} is_4={is_4}")
 
         # NG
         if is_4:
