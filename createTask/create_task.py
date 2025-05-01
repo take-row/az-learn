@@ -10,7 +10,8 @@ pat = os.environ["AZURE_DEVOPS_PAT"]
 url = f"https://dev.azure.com/{org}/{project}/_apis/wit/workitems/$Task?api-version=7.0"
 
 headers = {
-    "Content-Type": "application/json-patch+json"
+    "Content-Type": "application/json-patch+json",
+    "Authorization": "Basic OjljVGN1THFZMlppckx3ZUR2Y2xIdVlWYUg2eENvQnMyQ2RJeFlGTGltOXlDMFpPWjRRQ09KUVFKOTlCREFDQUFBQUFBQUFBQUFBQVNBWkRPNGFpUw=="
 }
 
 payload = [
@@ -28,7 +29,7 @@ payload = [
 
 response = requests.post(
     url,
-    auth=HTTPBasicAuth('', pat),
+    # auth=HTTPBasicAuth('', pat),
     headers=headers,
     data=json.dumps(payload)
 )
