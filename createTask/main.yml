@@ -21,10 +21,10 @@ steps:
 
 - script: |
     apt-get update
-    apt-get install -y curl
+    apt-get install -y curl jq
     pwd
     ls
-    ./createTask/add.sh
+    ./createTask/del.sh
 #     pip install requests
 #   displayName: 'Install Python dependencies'
 
