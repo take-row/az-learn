@@ -1,5 +1,4 @@
 import requests
-from requests.auth import HTTPBasicAuth
 import json
 import os
 
@@ -7,32 +6,65 @@ org = os.environ["ORG_NAME"]
 project = os.environ["PROJECT_NAME"]
 pat = os.environ["AZURE_DEVOPS_PAT"]
 
-url = f"https://dev.azure.com/{org}/{project}/_apis/wit/workitems/$Task?api-version=7.0"
+def main():
+    for i in range(10000):
+        count = 1 + i
+        batch_number = "batch1"
+        add_tags = [batch_number]
+        is_3 = True if (count % 3 == 0) else False
+        is_4 = True if (count % 4 == 0) else False
 
-headers = {
-    "Content-Type": "application/json-patch+json",
-    "Authorization": "Basic OjljVGN1THFZMlppckx3ZUR2Y2xIdVlWYUg2eENvQnMyQ2RJeFlGTGltOXlDMFpPWjRRQ09KUVFKOTlCREFDQUFBQUFBQUFBQUFBQVNBWkRPNGFpUw=="
-}
+        # NG
+        if is_4:
+            add_tags.append("NG")
 
-payload = [
-    {
-        "op": "add",
-        "path": "/fields/System.Title",
-        "value": "Python経由で作成された作業項目"
-    },
-    {
-        "op": "add",
-        "path": "/fields/System.Description",
-        "value": "この作業項目はPythonスクリプトから生成されました。"
+        payload = [
+            {
+                "op": "add",
+                "path": "/fields/System.Title",
+                "value": f"task-{count}"
+            },
+            {
+                "op": "replace",
+                "path": "/fields/System.Tags",
+                "value": "; ".join(add_tags)
+            },
+        ]
+            
+        # Done
+        if not is_4 and is_3:
+            done_dict = {
+                "op": "add",
+                "path": "/fields/System.State",
+                "value": "Done"
+            }
+            payload.append(done_dict)
+
+
+        exec_post_api(payload)
+
+def exec_post_api(payload):
+    url = f"https://dev.azure.com/{org}/{project}/_apis/wit/workitems/$Task?api-version=7.0"
+    headers = {
+        "Content-Type": "application/json-patch+json",
+        "Authorization": f"Basic {pat}",
     }
-]
 
-response = requests.post(
-    url,
-    # auth=HTTPBasicAuth('', pat),
-    headers=headers,
-    data=json.dumps(payload)
-)
+    count = 0
+    while True:
+        response = requests.post(
+            url,
+            headers=headers,
+            data=json.dumps(payload)
+        )
 
-print("Status Code:", response.status_code)
-print("Response:", response.json())
+        if response.status_code == 200:
+            break
+
+        print("Status Code:", response.status_code)
+        print("Response:", response.json())
+        count += 1
+        if count > 100:
+            raise Exception
+
+main()
