@@ -12,7 +12,8 @@ steps:
     addToPath: true
 
 - script: |
-    ./del.sh
+    ls
+    /bin/bash ./del.sh
   displayName: 'execute'
 
 # - script: |
