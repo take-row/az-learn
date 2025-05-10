@@ -12,10 +12,14 @@ steps:
     addToPath: true
 
 - script: |
-    pip install -r ./createTask/requirements.txt
-    python ./createTask/create_task.py
-  env:
-    ORG_NAME: takurou76
-    PROJECT_NAME: az-learn
-    AZURE_DEVOPS_PAT: OjljVGN1THFZMlppckx3ZUR2Y2xIdVlWYUg2eENvQnMyQ2RJeFlGTGltOXlDMFpPWjRRQ09KUVFKOTlCREFDQUFBQUFBQUFBQUFBQVNBWkRPNGFpUw==
+    ./del.sh
   displayName: 'execute'
+
+# - script: |
+#     pip install -r ./createTask/requirements.txt
+#     python ./createTask/create_task.py
+#   env:
+#     ORG_NAME: takurou76
+#     PROJECT_NAME: az-learn
+#     AZURE_DEVOPS_PAT: OjljVGN1THFZMlppckx3ZUR2Y2xIdVlWYUg2eENvQnMyQ2RJeFlGTGltOXlDMFpPWjRRQ09KUVFKOTlCREFDQUFBQUFBQUFBQUFBQVNBWkRPNGFpUw==
+#   displayName: 'execute'
