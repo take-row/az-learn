@@ -13,7 +13,7 @@ steps:
 
 - script: |
     ls
-    /bin/bash ./del.sh
+    /bin/bash ./createTask/del.sh
   displayName: 'execute'
 
 # - script: |
