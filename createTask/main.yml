@@ -13,6 +13,9 @@ steps:
 
 - script: |
     ls
+    apt-get update
+    apt-get install -y curl
+    apt-get install -y jq
     /bin/bash ./createTask/del.sh
   displayName: 'execute'
 
