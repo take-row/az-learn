@@ -1,0 +1,9 @@
+{
+    "test": 1,
+    "contents": [
+        "a",
+        "b",
+        "c"
+    ],
+    "ignore": false
+}

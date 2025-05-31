@@ -7,7 +7,7 @@ AUTH_HEADER="Authorization: Basic OjljVGN1THFZMlppckx3ZUR2Y2xIdVlWYUg2eENvQnMyQ2
 URL="https://dev.azure.com/takurou76/az-learn/_apis/wit/workitems/%24Task?api-version=7.0"
 
 # 1から10000までループ
-for i in $(seq 2441 10000); do
+for i in $(seq 1 5); do
   echo "Creating task $i..."
   sleep 0.001
 

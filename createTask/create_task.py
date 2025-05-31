@@ -7,7 +7,7 @@ project = os.environ["PROJECT_NAME"]
 pat = os.environ["AZURE_DEVOPS_PAT"]
 
 def main():
-    for i in range(30000):
+    for i in range(1000):
         count = 1 + i
         batch_number = "batch1"
         add_tags = [batch_number]

@@ -1,0 +1,15 @@
+name: Create Task
+
+trigger: none
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- script: |
+    ls
+    sudo apt-get update
+    sudo apt-get install -y curl
+    sudo apt-get install -y jq
+    /bin/bash ./createTask/del.sh
+  displayName: 'execute'

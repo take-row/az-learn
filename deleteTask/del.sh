@@ -17,6 +17,7 @@ RESPONSE=$(curl -s -X POST "https://dev.azure.com/takurou76/az-learn/_apis/wit/w
   -H "Authorization: Basic OjljVGN1THFZMlppckx3ZUR2Y2xIdVlWYUg2eENvQnMyQ2RJeFlGTGltOXlDMFpPWjRRQ09KUVFKOTlCREFDQUFBQUFBQUFBQUFBQVNBWkRPNGFpUw==" \
   -d "$WIQL_QUERY")
 
+echo $RESPONSE
 IDS=$(echo "$RESPONSE" | jq '.workItems[].id')
 
 if [ -z "$IDS" ]; then

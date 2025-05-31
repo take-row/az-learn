@@ -1,0 +1,20 @@
+trigger: None
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '3.x'
+    addToPath: true
+
+- script: |
+    python main.py
+  displayName: 'Run Python Script'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: 'output.json'
+    ArtifactName: 'json-artifact'
+    publishLocation: 'Container'
