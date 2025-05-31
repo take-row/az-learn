@@ -12,7 +12,8 @@ steps:
     addToPath: true
 
 - script: |
-    python main.py
+    pip install azure-storage-blob
+    python ./loadDatas/main.py
   displayName: 'Run Python Script'
 
 - task: PublishBuildArtifacts@1
