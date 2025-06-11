@@ -29,7 +29,7 @@ EOF
 )
 
   # curl実行
-  curl -s -X POST \
+  curl -X POST \
     -H "Content-Type: application/json-patch+json" \
     -H "$AUTH_HEADER" \
     --data "$JSON_DATA" \
